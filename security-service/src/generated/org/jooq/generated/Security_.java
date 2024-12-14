@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 
 import org.jooq.Catalog;
 import org.jooq.Table;
-import org.jooq.generated.tables.Users_;
+import org.jooq.generated.tables.User_;
 import org.jooq.impl.SchemaImpl;
 
 
@@ -37,9 +37,9 @@ public class Security_ extends SchemaImpl {
     public static final Security_ SECURITY = new Security_();
 
     /**
-     * The table <code>security.users</code>.
+     * The table <code>security.user</code>.
      */
-    public final Users_ USERS = Users_.USERS;
+    public final User_ USER = User_.USER;
 
     /**
      * No further instances allowed
@@ -57,7 +57,7 @@ public class Security_ extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
-            Users_.USERS
+            User_.USER
         );
     }
 }

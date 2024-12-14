@@ -5,11 +5,15 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
 @EnableWebSecurity // 스프링 시큐리티 필터 -> 기본 스프링 필터체인에 등록
 class SecurityConfig {
+
+    @Bean
+    fun passwordEncoder()= BCryptPasswordEncoder()
 
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
@@ -25,7 +29,7 @@ class SecurityConfig {
                     .anyRequest().permitAll()  // 나머지 요청은 허용
             }
             .formLogin {
-                it.loginPage("/login")
+                it.loginPage("/loginForm")
             }
             .build()
     }

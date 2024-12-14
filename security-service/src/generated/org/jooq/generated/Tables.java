@@ -6,7 +6,7 @@ package org.jooq.generated;
 
 import javax.annotation.processing.Generated;
 
-import org.jooq.generated.tables.Users_;
+import org.jooq.generated.tables.User_;
 
 
 /**
@@ -24,7 +24,7 @@ import org.jooq.generated.tables.Users_;
 public class Tables {
 
     /**
-     * The table <code>security.users</code>.
+     * The table <code>security.user</code>.
      */
-    public static final Users_ USERS = Users_.USERS;
+    public static final User_ USER = User_.USER;
 }
