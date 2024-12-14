@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: security-service
+  datasource:
+    url: jdbc:mysql://localhost:23306/security
+    username: security
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+logging:
+  level:
+    org:
+      jooq:
+        tools:
+          LoggerListener: debug
+server:
+  port: 18080

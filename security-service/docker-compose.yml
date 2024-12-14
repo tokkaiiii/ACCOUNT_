@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:lts
+    container_name: mysql-security
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: security
+      MYSQL_USER: security
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "23306:3306"
+    command:
+      [
+        'mysqld',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci',
+        '--lower_case_table_names=1',
+        '--default-time-zone=Asia/Seoul'  # 한국 시간대 설정
+      ]
+    volumes:
+      - mysql-data:/var/lib/mysql  # 데이터 영속성을 위한 볼륨 마운트
+volumes:
+  mysql-data:
