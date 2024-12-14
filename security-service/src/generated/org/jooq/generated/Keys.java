@@ -8,8 +8,8 @@ import javax.annotation.processing.Generated;
 
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
-import org.jooq.generated.tables.Users_;
-import org.jooq.generated.tables.records.UsersRecord;
+import org.jooq.generated.tables.User_;
+import org.jooq.generated.tables.records.UserRecord;
 import org.jooq.impl.DSL;
 import org.jooq.impl.Internal;
 
@@ -33,5 +33,5 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<UsersRecord> KEY_USERS_PRIMARY = Internal.createUniqueKey(Users_.USERS, DSL.name("KEY_users_PRIMARY"), new TableField[] { Users_.USERS.ID }, true);
+    public static final UniqueKey<UserRecord> KEY_USER_PRIMARY = Internal.createUniqueKey(User_.USER, DSL.name("KEY_user_PRIMARY"), new TableField[] { User_.USER.ID }, true);
 }
