@@ -2,8 +2,7 @@ package com.tokkaiiii.account.securityservice.repository
 
 import org.jooq.Configuration
 import org.jooq.DSLContext
-import org.jooq.generated.tables.User_
-import org.jooq.generated.tables.User_.*
+import org.jooq.generated.tables.User_.USER
 import org.jooq.generated.tables.daos.UserDao
 import org.jooq.generated.tables.pojos.User
 import org.springframework.stereotype.Repository

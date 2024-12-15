@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.config.http.SessionCreationPolicy.*
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 
@@ -18,7 +19,7 @@ class SecurityConfig {
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http.csrf { it.disable() }
-            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+            .sessionManagement { it.sessionCreationPolicy(STATELESS) }
             .formLogin { it.disable() }
             .httpBasic { it.disable() }
             .authorizeHttpRequests { requests ->
@@ -30,6 +31,8 @@ class SecurityConfig {
             }
             .formLogin {
                 it.loginPage("/loginForm")
+                it.loginProcessingUrl("/login") // login 주소가 호출되면 시큐리티가 낚아채서 대신 로그인 진행
+                    .defaultSuccessUrl("/", true) // 로그인 성공하면 / 메인으로 보내기
             }
             .build()
     }
