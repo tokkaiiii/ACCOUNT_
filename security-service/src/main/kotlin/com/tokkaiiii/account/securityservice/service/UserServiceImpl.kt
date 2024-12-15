@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional(readOnly = true)
 class UserServiceImpl(
     private val userRepository: UserRepository,
+
     private val passwordEncoder: PasswordEncoder
 ) : UserService {
 
@@ -21,5 +22,9 @@ class UserServiceImpl(
         user.password = passwordEncoder.encode(request.password)
         user.email = request.email
         return userRepository.createUser(user)
+    }
+
+    override fun findByUsername(username: String): User? {
+        return userRepository.findByUsername(username)
     }
 }

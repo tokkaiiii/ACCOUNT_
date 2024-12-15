@@ -28,4 +28,10 @@ class UserRepositoryImpl(
         ).returningResult(USER.ID)
             .fetchOneInto(Long::class.java)
     }
+
+    override fun findByUsername(username: String): User? {
+        return dslContext.selectFrom(USER)
+            .where(USER.USERNAME.eq(username))
+            .fetchOneInto(User::class.java)
+    }
 }

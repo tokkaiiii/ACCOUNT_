@@ -7,4 +7,6 @@ interface UserRepository {
 
     fun createUser(user: User): Long?
 
+    fun findByUsername(username: String): User?
+
 }

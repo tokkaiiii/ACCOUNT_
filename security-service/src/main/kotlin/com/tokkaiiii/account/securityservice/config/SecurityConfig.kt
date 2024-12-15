@@ -19,7 +19,7 @@ class SecurityConfig {
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http.csrf { it.disable() }
-            .sessionManagement { it.sessionCreationPolicy(STATELESS) }
+//            .sessionManagement { it.sessionCreationPolicy(STATELESS) }
             .formLogin { it.disable() }
             .httpBasic { it.disable() }
             .authorizeHttpRequests { requests ->
@@ -32,7 +32,7 @@ class SecurityConfig {
             .formLogin {
                 it.loginPage("/loginForm")
                 it.loginProcessingUrl("/login") // login 주소가 호출되면 시큐리티가 낚아채서 대신 로그인 진행
-                    .defaultSuccessUrl("/", true) // 로그인 성공하면 / 메인으로 보내기
+                    .defaultSuccessUrl("/") // 로그인 성공하면 / 메인으로 보내기
             }
             .build()
     }
