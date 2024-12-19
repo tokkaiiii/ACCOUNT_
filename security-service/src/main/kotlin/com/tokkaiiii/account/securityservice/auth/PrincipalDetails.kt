@@ -3,6 +3,7 @@ package com.tokkaiiii.account.securityservice.auth
 import org.jooq.generated.tables.pojos.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.oauth2.core.user.OAuth2User
 
 // 시큐리티가 /login 주소 요청이 오면 낚아채서 로그인 진행
 // 로그인 진행이 완료되면 시큐리티 session 을 만듬 -> security 가 가진 session 이 존재(Security ContextHolder 라는 key 값을 가짐)
@@ -14,8 +15,16 @@ import org.springframework.security.core.userdetails.UserDetails
 
 
 class PrincipalDetails(
-   private val user: User
-) : UserDetails{
+   private val user: User,
+    private val attributes: MutableMap<String, Any>?=null,
+) : UserDetails, OAuth2User{
+    override fun getName(): String? {
+        return null
+    }
+
+    override fun getAttributes(): MutableMap<String, Any>? {
+        return attributes
+    }
 
     // 해당 User 의 권한을 리턴하는 메소드
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
@@ -49,4 +58,6 @@ class PrincipalDetails(
         // user.loginDate 가져와서 현재 시간 - 로그인 시간 -> 1년 초과하면 return false
         return true
     }
+
+    fun getUser(): User = user
 }

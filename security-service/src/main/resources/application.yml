@@ -6,6 +6,17 @@ spring:
     username: security
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            scope:
+              - email
+              - profile
+
 logging:
   level:
     org:
@@ -14,3 +25,4 @@ logging:
           LoggerListener: debug
 server:
   port: 18080
+
