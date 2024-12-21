@@ -20,14 +20,19 @@ class UserRepositoryImpl(
             USER,
             USER.USERNAME,
             USER.PASSWORD,
-            USER.EMAIL
+            USER.EMAIL,
+            USER.PROVIDER,
+            USER.PROVIDER_ID
         ).values(
             user.username,
             user.password,
-            user.email
+            user.email,
+            user.provider,
+            user.providerId
         ).returningResult(USER.ID)
             .fetchOneInto(Long::class.java)
     }
+
 
     override fun findByUsername(username: String): User? {
         return dslContext.selectFrom(USER)
