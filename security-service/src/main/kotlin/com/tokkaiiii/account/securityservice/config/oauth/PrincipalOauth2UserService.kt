@@ -2,10 +2,10 @@ package com.tokkaiiii.account.securityservice.config.oauth
 
 import com.tokkaiiii.account.securityservice.auth.PrincipalDetails
 import com.tokkaiiii.account.securityservice.config.oauth.provider.GoogleUserInfo
+import com.tokkaiiii.account.securityservice.config.oauth.provider.NaverUserInfo
 import com.tokkaiiii.account.securityservice.config.oauth.provider.OAuth2UserInfo
 import com.tokkaiiii.account.securityservice.repository.UserRepository
-import org.jooq.generated.enums.UserRole
-import org.jooq.generated.enums.UserRole.*
+import org.jooq.generated.enums.UserRole.ROLE_USER
 import org.jooq.generated.tables.pojos.User
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService
@@ -32,8 +32,10 @@ class PrincipalOauth2UserService(
         if (userRequest?.clientRegistration?.registrationId == "google"){
             println("구글 로그인 요청")
             oAuth2UserInfo = GoogleUserInfo(oAuth2User.attributes)
-        }else{
-            println("우리는 구글만 지원합니다.")
+        }else if(userRequest?.clientRegistration?.registrationId == "naver"){
+            oAuth2UserInfo = NaverUserInfo(oAuth2User.attributes["response"] as Map<String,Any>)
+        } else{
+            println("우리는 구글과 네이버만 지원합니다.")
         }
 
         val provider = oAuth2UserInfo?.getProvider()
